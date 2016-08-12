@@ -1,6 +1,7 @@
 # node-rx-http
 
 [![NPM](https://nodei.co/npm/node-rx-http.png)](https://nodei.co/npm/node-rx-http/)
+[![Build Status](https://travis-ci.org/Dapperware/node-rx-http.svg?branch=master)](https://travis-ci.org/Dapperware/node-rx-http)
 
 A simple RxJS wrapper for the node http module
 
