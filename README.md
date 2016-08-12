@@ -20,11 +20,61 @@ $ npm install --save node-rx-http
 
 var RxHttp = require('node-rx-http');
 
-RxHttp.get('http://www.google.com')
-  .filter(x => x.statusCode)
+RxHttp.get('http://personatestuser.org/email')
+  .filter(x => x.statusCode === 200)
   .map(x => JSON.parse(x.body))
-  .subscribe(body => {
-    console.log(body.data);
-  });
+  .map(x => ({email : x.email, password: x.pass}));
+
+```
+
+Compare this to the normal way of interacting with the native http module
+
+```javascript
+
+//Taken from https://davidwalsh.name/nodejs-http-request
+return http.get({
+    host: 'personatestuser.org',
+    path: '/email'
+}, function(response) {
+    // Continuously update stream with data
+    var body = '';
+    response.on('data', function(d) {
+        body += d;
+    });
+    response.on('end', function() {
+
+        // Data reception is done, do whatever with it!
+        var parsed = JSON.parse(body);
+        callback({
+            email: parsed.email,
+             password: parsed.pass
+        });
+    });
+});
+
+```
+
+This also lets us interface nicely with other request libraries. 
+Say we are changing tools and we need to strangle out one library for another.
+
+With RxJS this is a breeze, because the source is decoupled from the stream.
+
+```javascript
+
+var rp = require('request-promise');
+var Rx = require('rxjs');
+var RxHttp = require('node-rx-http');
+
+var source = RxHttp.get('http://personatestuser.org/email');
+//Or
+var source = Rx.Observable.fromPromise(rp('http://personatestuser.org/email'));
+
+//Processing - either source will work
+source
+  .filter(x => x.statusCode === 200)
+  .map(x => JSON.parse(x.body))
+  .map(x => ({email : x.email, password: x.pass}))
+  .subscribe(x => doLogin(x.email, x.password));
+
 
 ```
