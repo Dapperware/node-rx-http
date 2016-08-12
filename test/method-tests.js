@@ -13,7 +13,7 @@ describe('request', function () {
     it('should forward errors to the handler', function (done) {
       RxHttp.get('http://example.com/error').subscribe(
         x => {
-          expect(x.status).to.equal(401);
+          expect(x.statusCode).to.equal(401);
           expect(x.body).to.equal('Error!');
         },
         done,
@@ -23,7 +23,7 @@ describe('request', function () {
 
     it('should return 200 on success', function (done) {
       RxHttp.get('http://example.com/safe').subscribe(x => {
-        expect(x.status).to.equal(200);
+        expect(x.statusCode).to.equal(200);
       }, done, done);
     });
   });

@@ -32,8 +32,14 @@ var RequestObservable = (function (_super) {
             var data = Rx.Observable.fromEvent(res, 'data');
             var done = Rx.Observable.fromEvent(res, 'end');
             return data.takeUntil(done)
-                .reduce(function (body, delta) { return body + delta; }, '')
-                .map(function (body) { return ({ body: body, status: res.statusCode, header: res.headers }); });
+                .reduce(function (body, delta) { return body + delta; }, '');
+        }, function (_a, body) {
+            var statusCode = _a.statusCode, headers = _a.headers;
+            return ({
+                statusCode: statusCode,
+                headers: headers,
+                body: body
+            });
         })
             .subscribe(subscriber);
         var s2 = Rx.Observable.fromEvent(req, 'error', function (e) { throw e; })

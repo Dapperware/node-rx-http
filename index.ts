@@ -31,13 +31,18 @@ class RequestObservable extends Rx.Observable<any> {
 
         var s1 = Rx.Observable.fromEvent(req, 'response')
             .first()
-            .flatMap((res: http.IncomingMessage) => {
-                var data = Rx.Observable.fromEvent(res, 'data');
-                var done = Rx.Observable.fromEvent(res, 'end');
-                return data.takeUntil(done)
-                    .reduce((body: string, delta: string) => body + delta, '')
-                    .map((body: string) => ({body: body, status: res.statusCode, header: res.headers}));
-            })
+            .flatMap(
+                (res: http.IncomingMessage) => {
+                    var data = Rx.Observable.fromEvent(res, 'data');
+                    var done = Rx.Observable.fromEvent(res, 'end');
+                    return data.takeUntil(done)
+                        .reduce((body: string, delta: string) => body + delta, '');
+                },
+                ({statusCode, headers}, body: string) => ({
+                    statusCode: statusCode,
+                    headers: headers,
+                    body: body
+                }))
             .subscribe(subscriber);
 
         var s2 = Rx.Observable.fromEvent(req, 'error', e => { throw e; })
