@@ -1,6 +1,6 @@
 {
   "name": "node-rx-http",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple Rx wrapper around the native Node http module",
   "main": "index.js",
   "scripts": {
