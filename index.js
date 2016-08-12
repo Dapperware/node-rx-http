@@ -24,9 +24,8 @@ var RequestObservable = (function (_super) {
         this.body = body;
     }
     RequestObservable.prototype._subscribe = function (subscriber) {
-        var subscription = new Rx.Subscription();
         var req = http.request(this.options);
-        var s1 = Rx.Observable.fromEvent(req, 'response')
+        var sub1 = Rx.Observable.fromEvent(req, 'response')
             .first()
             .flatMap(function (res) {
             var data = Rx.Observable.fromEvent(res, 'data');
@@ -42,12 +41,12 @@ var RequestObservable = (function (_super) {
             });
         })
             .subscribe(subscriber);
-        var s2 = Rx.Observable.fromEvent(req, 'error', function (e) { throw e; })
+        var sub2 = Rx.Observable.fromEvent(req, 'error', function (e) { throw e; })
             .subscribe(subscriber);
-        subscription.add(s2);
+        sub1.add(sub2);
         this.body && req.write(this.body);
         req.end();
-        return subscription;
+        return sub1;
     };
     return RequestObservable;
 }(Rx.Observable));

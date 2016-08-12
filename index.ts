@@ -26,10 +26,9 @@ class RequestObservable extends Rx.Observable<any> {
     }
 
     protected _subscribe(subscriber: Rx.Subscriber<any>) {
-        var subscription = new Rx.Subscription();
         var req = http.request(this.options);
 
-        var s1 = Rx.Observable.fromEvent(req, 'response')
+        var sub1 = Rx.Observable.fromEvent(req, 'response')
             .first()
             .flatMap(
                 (res: http.IncomingMessage) => {
@@ -45,14 +44,15 @@ class RequestObservable extends Rx.Observable<any> {
                 }))
             .subscribe(subscriber);
 
-        var s2 = Rx.Observable.fromEvent(req, 'error', e => { throw e; })
+        var sub2 = Rx.Observable.fromEvent(req, 'error', e => { throw e; })
             .subscribe(subscriber);
-        subscription.add(s2);
+
+        sub1.add(sub2);
 
         this.body && req.write(this.body);
         req.end();
 
-        return subscription;
+        return sub1;
     }
 }
 
