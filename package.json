@@ -1,0 +1,26 @@
+{
+  "name": "node-rx-http",
+  "version": "1.0.0",
+  "description": "A simple Rx wrapper around the native Node http module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rx",
+    "reactive-extensions",
+    "reactive-programming",
+    "http",
+    "rxjs"
+  ],
+  "author": "Paul Daniels",
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "^5.0.0-beta.11"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2",
+    "nock": "^8.0.0"
+  }
+}
