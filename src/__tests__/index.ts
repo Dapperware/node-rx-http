@@ -1,6 +1,5 @@
-var RxHttp = require('../index');
-var nock = require('nock');
-var expect = require('chai').expect;
+import RxHttp from '../index';
+const nock = require('nock');
 
 describe('request', function () {
   describe('get', function () {
@@ -13,8 +12,8 @@ describe('request', function () {
     it('should forward errors to the handler', function (done) {
       RxHttp.get('http://example.com/error').subscribe(
         x => {
-          expect(x.statusCode).to.equal(401);
-          expect(x.body).to.equal('Error!');
+          expect(x.statusCode).toEqual(401);
+          expect(x.body).toEqual('Error!');
         },
         done,
         done
@@ -23,7 +22,7 @@ describe('request', function () {
 
     it('should return 200 on success', function (done) {
       RxHttp.get('http://example.com/safe').subscribe(x => {
-        expect(x.statusCode).to.equal(200);
+        expect(x.statusCode).toEqual(200);
       }, done, done);
     });
   });
