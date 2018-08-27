@@ -17,11 +17,11 @@
   "author": "Paul Daniels",
   "license": "MIT",
   "dependencies": {
-    "rxjs": "^5.0.0-beta.11"
+    "rxjs": "^6.2.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.0.2",
-    "nock": "^8.0.0"
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "nock": "^9.6.1"
   }
 }
