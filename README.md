@@ -3,7 +3,7 @@
 [![NPM](https://nodei.co/npm/node-rx-http.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/node-rx-http/)
 
 [![Build Status](https://travis-ci.org/Dapperware/node-rx-http.svg?branch=master)](https://travis-ci.org/Dapperware/node-rx-http) 
-[![codecov](https://codecov.io/gh/Dapperware/node-rx-http/branch/master/graph/badge.svg)](https://codecov.io/gh/Dapperware/node-rx-http)
+[![codecov](https://codecov.io/gh/Dapperware/node-rx-http/branch/master/graph/badge.svg)](https://codecov.io/gh/Dapperware/node-rx-http) [![Greenkeeper badge](https://badges.greenkeeper.io/Dapperware/node-rx-http.svg)](https://greenkeeper.io/)
 
 
 A simple RxJS wrapper for the node http module
