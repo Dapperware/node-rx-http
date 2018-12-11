@@ -42,7 +42,7 @@
     "@types/jest": "^23.3.8",
     "chai": "^4.1.2",
     "jest": "^23.5.0",
-    "jest-fetch-mock": "^1.6.5",
+    "jest-fetch-mock": "^2.0.0",
     "mocha": "^5.2.0",
     "nock": "^10.0.1",
     "prettier": "^1.14.2",
