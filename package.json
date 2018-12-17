@@ -47,7 +47,7 @@
     "nock": "^10.0.1",
     "prettier": "^1.14.2",
     "rimraf": "^2.6.2",
-    "rollup": "^0.67.3",
+    "rollup": "^0.68.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "ts-jest": "^23.1.4",
     "typescript": "^2.9.2",
