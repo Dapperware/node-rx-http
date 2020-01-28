@@ -39,7 +39,7 @@
     "rxjs": "^6.2.2"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.0",
+    "@types/jest": "^25.1.0",
     "chai": "^4.1.2",
     "jest": "^23.5.0",
     "jest-fetch-mock": "^3.0.0",
